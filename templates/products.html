@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block title %}My Duka - Products{% endblock %} {%
+block content %}
+<div class="container mt-5">
+  <h1>Product Management</h1>
+  <p>This is a sample product management page.</p>
+</div>
+
+<div class="container">
+  <table id="example" class="table table-striped">
+    <thead>
+        
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Buying Price</th>
+        <th>Selling Price</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in products %}
+      <tr>
+        <td>{{ i[0] }}</td>
+        <td>{{ i[1] }}</td>
+        <td>{{ i[2] }}</td>
+        <td>{{ i[3] }}</td>       
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Record Sale - MyDuka{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0"> Record Sale</h4>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/add_sale">
+                <div class="mb-3">
+                    <label for="product_id" class="form-label">Select Product</label>
+                    <select class="form-select" id="product_id" name="product_id" required>
+                        <option value="" disabled selected>-- Choose a product --</option>
+                        {% for product in products %}
+                            <option value="{{ product[0] }}">{{ product[1] }} (ID: {{ product[0] }})</option>
+                        {% else %}
+                            <option value="" disabled>No products available.</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity to Sell</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" 
+                           min="1" placeholder="Enter quantity" required>
+                    <div class="form-text"> System will check available stock before processing.</div>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{{ url_for('sales') }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-warning text-dark"> Record Sale</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

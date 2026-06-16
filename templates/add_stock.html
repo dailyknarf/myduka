@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Add Stock - MyDuka{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Add Stock</h4>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/add_stock">
+                <div class="mb-3">
+                    <label for="product_id" class="form-label">Select Product</label>
+                    <select class="form-select" id="product_id" name="product_id" required>
+                        <option value="" disabled selected>-- Choose a product --</option>
+                        {% for product in products %}
+                            <option value="{{ product[0] }}">{{ product[1] }} (ID: {{ product[0] }})</option>
+                        {% else %}
+                            <option value="" disabled>No products available. Please add products first.</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity to Add</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" 
+                           min="1" placeholder="Enter quantity" required>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{{ url_for('stock') }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary"> Add Stock</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
